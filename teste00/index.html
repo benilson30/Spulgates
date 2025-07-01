@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista com Imagens e Links</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+      background: #f9f9f9;
+    }
+
+    .container {
+      position: relative;
+      width: 7200px;
+      overflow: hidden;
+    }
+
+    .viewport {
+      overflow: hidden;
+    }
+
+    .list {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .item {
+      flex: 0 0 16.66%;
+      margin: 8px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+      transition: transform 0.3s;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+    }
+
+    .item img {
+      width: 100%;
+      border-radius: 8px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .item a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 45%;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .nav-left {
+      left: -40px;
+    }
+
+    .nav-right {
+      right: -40px;
+    }
+
+    .indicators {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: #ccc;
+      transition: background 0.3s ease;
+    }
+
+    .dot.active {
+      background: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <button class="nav-button nav-left" onclick="prevPage()">←</button>
+
+  <div class="viewport">
+    <div class="list" id="list"></div>
+  </div>
+
+  <button class="nav-button nav-right" onclick="nextPage()">→</button>
+
+  <div class="indicators" id="indicators"></div>
+</div>
+
+<script>
+  // Dados dos itens: imagem, título, link
+  const items = Array.from({ length: 30 }, (_, i) => ({
+    title: `Produto ${i + 1}`,
+    image: `https://picsum.photos/200/100?random=${i + 1}`,
+    link: `https://example.com/produto${i + 1}`
+  }));
+
+  const itemsPerPage = 6;
+  let currentPage = 0;
+
+  const listEl = document.getElementById("list");
+  const indicatorsEl = document.getElementById("indicators");
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  // Render all items
+  items.forEach(({ title, image, link }) => {
+    const item = document.createElement("div");
+    item.className = "item";
+    item.innerHTML = `
+      <a href="${link}" target="_blank">
+        <img src="${image}" alt="${title}" />
+        <span>${title}</span>
+      </a>
+    `;
+    listEl.appendChild(item);
+  });
+
+  function renderList() {
+    const offset = -currentPage * 100;
+    listEl.style.transform = `translateX(${offset}%)`;
+    renderIndicators();
+  }
+
+  function renderIndicators() {
+    indicatorsEl.innerHTML = "";
+    for (let i = 0; i < totalPages; i++) {
+      const dot = document.createElement("span");
+      dot.className = "dot" + (i === currentPage ? " active" : "");
+      indicatorsEl.appendChild(dot);
+    }
+  }
+
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      renderList();
+    }
+  }
+
+  function nextPage() {
+    if (currentPage < totalPages - 1) {
+      currentPage++;
+      renderList();
+    }
+  }
+
+  listEl.style.width = `${(items.length / itemsPerPage) * 100}%`;
+  renderList();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPULGATE</title>
+  <link rel="shortcut icon" href="./Assets/img/Spulgate-Logo-PNG.png" type="image/x-icon">
+  <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; 
+    
+    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #ffffff; color: #333; }
+
+    header {
+      
+      color: white;
+      margin: 50px 10px 30px 0;
+      position: fixed;
+      width: 97.5%;
+      top: 0;
+      z-index: 998;
+      height: auto;
+      flex-wrap: wrap;
+      transition: 0.7s ease;
+    }
+    .main{
+        border-top-right-radius: 250px;
+        padding: 1rem;
+        width: 100%;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        transition: background-color 0.7s ease;
+        background-color: #288cf05e;
+    }
+    .main.scrolled {
+        background-color: #7babf3;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .logo { font-size: 1.5rem; font-weight: bold; color: #fff; }
+    nav { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    nav a { text-decoration: none; color: #fff; font-weight: 500; }
+    
+    .containerbell{
+        border-bottom-right-radius: 100px;
+        background-color: #dbe0e9;
+        width: 100%;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 1rem;
+    }
+    
+    .hero {box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; background-image: linear-gradient(to right, #ffffffa2,#0000006c,#000000ab), url(./Assets/img/background1.jpg); background-position: center; background-repeat: no-repeat; background-size: cover; height: 70vh; display: flex; align-items: center; text-align: left; padding: 6rem 1rem 2rem; }
+    .hero h1 { font-size: 3.8rem; margin-bottom: 1rem; color: #fff; letter-spacing: 5px; font-family: italic; transition: 0.5s ease;} .hero h2{ color: #fff; }
+    .hero h1 span { font-size: 21px; color: #032b99e0; letter-spacing: 5px; } .hero p{ color: #fff; } .hero .text{ display: block; position: relative; left: 100px;}
+
+    .containerbell { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .containerbell input { padding: 0.5rem 1rem; border: 2px solid #0046ff; border-radius: 8px; width: 100%; max-width: 300px; }
+    .containerbell button { padding: 0.5rem 1rem; background-color: #0046ff; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    .product-listing{
+         box-shadow: 0 2px 6px rgba(3, 59, 112, 0.466);
+    }
+    .products, .product-listing, .partner-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; padding: 2rem 1rem; }
+    .product-card, .product-item { background-color: #ffffff; border: 1px solid #ccc; border-radius: 12px; padding: 1rem; width: 200px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .product-card img, .product-item img { width: 80px; height: auto; margin-bottom: 1rem; }
+    .product-item .price { color: red; font-weight: bold; }
+
+      
+    .section-title { width: 100%; text-align: center; font-size: 1.9rem; margin: 0.2rem 0; color: #003366;  }
+
+    .partners-section { text-align: center; padding: 2rem 1rem; background: #f1f4f9;}
+    .partners-section p { max-width: 900px; margin: auto; margin-bottom: 1rem; font-size: 0.95rem; color: #333; }
+    .partner-logos img {cursor: pointer; width: 200px; height: auto; filter: grayscale(1); opacity: 0.7; transition: 0.3s; }
+    .partner-logos img:hover { filter: grayscale(0); opacity: 1; }
+
+    .newsletter{width: 100%;padding: 30px 10px; margin: 10px 0; border-top: #0044ff6b solid 1px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around;}
+    .newsWords{padding: 10px;}
+    .newsForm{padding: 10px;}
+    .footInfo{width: 100%; padding: 30px 10px; border-top: #0044ff6b solid 1px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around;}
+
+    footer .footer-content { display: flex; flex-wrap: wrap; justify-content: space-around; text-align: left; max-width: 1200px; margin: auto; }
+    footer h4 { margin-bottom: 1rem; color: #032b99e0;}
+    footer input[type="email"] { padding: 0.5rem; border: none; border-radius: 4px; width: 300px; background-color: #ccc; }
+    footer button { padding: 0.5rem 1rem; background-color: #ff6600; border: none; border-radius: 4px; color: white; cursor: pointer; }
+    .logoLinksSocials{display: flex;justify-content: space-around;align-items: center;}
+    .logoLinksSocials a{text-decoration: none;}
+    .lLS{background-color: #0046ff; border-radius: 50%; width: 30px; height: 30px; padding: 10px;  box-shadow: 0 4px 8px rgba(0,0,0,0.1);display: flex; align-items: center; justify-content: center;}
+   .lLS img{height: 15px;width: 15px;}
+    .history{
+        margin-top: 15px;
+        margin-bottom: 30px;
+        width: 100%;
+        height: 20vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .letterhistory{
+        padding: 30px;
+        text-wrap: wrap;
+        width: auto;
+        height: 20vh;
+        background-image: url(./Assets/img/chuva-com-gotas-de-agua-caindo-no-fundo-branco_1017-33600.jpg);
+        background-position: center;
+        background-repeat: repeat;
+        text-align: center;
+        animation: movebackground 17s linear infinite;
+
+    }
+    .letterhistory >p{
+        font-size: 22px;
+        color: #000;
+        letter-spacing: 1.2px;
+    }
+    @keyframes  movebackground{
+        from{
+            background-position:  0 50px;
+        }
+        to{
+            background-position: 1000px 1000px;
+        }
+    }
+    .letterhistory > h1{
+        color: #032b99e0;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    #backToTop {
+      position: fixed; bottom: 20px; right: 20px; background: #288cf08c; color: white; border: none; padding: 18px 25px; border-radius: 50%; font-size: 20px; cursor: pointer; display: block; opacity: 0; transition: 0.5s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .tellLink{
+      text-decoration: none;
+    }
+    .tellWhatsapp{
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      width: 50px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background-color: #73ff8a8f;
+      border-radius: 50%;
+      position: fixed;
+      z-index: 997;
+      left: 20px;
+      bottom: 20px;
+      animation: moveBotton 0.5s ease-in-out infinite;
+      transition: 0.5s ease-in-out;
+    }
+    .tellWhatsapp:hover{
+      background-color: #62ff7d;
+      transition: 0.5s ease;
+    }
+    @keyframes moveBotton {
+      50%{
+        bottom: 22px;
+        transition: 0.5s ease-in-out;
+      }
+      100%{
+        bottom: 25px;
+        transition: 0.5s ease-in-out;
+      }
+    }
+    .tellWhatsapp img{
+      color: #fff;
+    }
+    .onload{
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      position: fixed;
+      padding: 20px;
+      display: flex;
+      z-index: 999;
+      top: 0;
+      bottom: 0;
+      filter: blur(0.1);
+      background-color: #c2c2c281;
+      align-items: center;
+      display: none;
+      justify-content: center;
+    }
+
+
+    .processAll{ padding: 10px; width: auto;}
+    .process{ 
+      height: 8rem; width: 8rem; border-radius: 50%; background-color: transparent; display: flex; flex-wrap: nowrap; align-items: center; justify-content: center;
+      border-right-color: transparent;
+      animation: spin 0.99s ease-in-out infinite;
+      background: repeating-radial-gradient(circle, transparent,#26afffb0 20%);
+      transition: 0.5s ease;
+    
+    }
+    .onprocess{ margin: 20px 0;width: 100%; height: 5px;  background: #c2c2c265; border-radius: 20px;}
+    .bakcProcessOn{width: 0%; height: 100%; display: flex; background: #26afff9f; border-radius: 20px; animation: onprocess 1.7s ease infinite;}
+    @keyframes onprocess {
+      25%{
+        width: 25%;
+      }
+      50%{
+        width: 50%;
+      }
+      75%{
+        width: 75%;
+      }
+      99%{
+        width: 100%;
+      }
+    }
+    @keyframes spin {
+      100%{
+        transform: scale(0.9);
+        transition: 0.5s ease;
+      }
+    }
+    @media (max-width: 600px) {
+      nav, .footer-content, .partner-logos { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body id="preview" class="custom-cursor">
+  <header >
+    <nav class="main" id="mainHeader">        
+        <div class="logo"><a href="#" style="text-decoration: none;"><img src="./Assets/img/Spulgate-Logo-PNG.png" height="60px" width="60px" alt=""></a></div>
+        <nav >
+          <a href="/">PÁGINA INICIAL</a>
+          <a href="/sobre" >SOBRE NÓS</a>
+          <a href="/servico">NOSSOS SERVIÇOS</a>
+          <a href="/loja">LOJA</a>
+          <a href="/contato">CONTACTE-NOS</a>
+        </nav>
+    </nav>
+    <div class="containerbell">
+        <!--icon-->
+    </div>
+</header>
+  <main id="appGingaSoft">
+
+      <div class="hero">
+            <div class="text">
+                <h1> <i>SpulGate<span> Always better</span></i></h1>
+                <h2>Dominando o mundo das novas tecnologias com Spulgates.</h2>
+                <p>Asseguramos há segurança de sua casa com as nossas inovações em cerca electrica.
+                </p>
+            </div>
+        </div>
+        <div class="history">
+            <div class="letterhistory">
+                <h1><i>Inovando com Spulgate é um sonho Realizado.</i></h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipis Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente asperiores in perspiciatis
+                     adipisci cum nihil atque quibusdam officiis hic. Asperiores ab, repellendus aut enim nisi magnam delectus recusandae dolorum excepturi.
+                      icing elit. Inventore sunt dolorum assumenda veritatis nam exercitationem. Fuga debitis esse necessitatibus veritatis autem, reiciendis 
+                      cupiditate unde sint, rerum, voluptas tempora corrupti vel!</p>
+            </div>
+        </div>
+        <section class="product-listing">
+            <h2 class="section-title"><i>Nossos Stock's</i></h2>
+            <div class="product-item">
+                <img src="./Assets/img/produto (1).jpeg" alt="Photo Smart">
+                <p>Centurion Photo Smart</p>
+                <p class="price">85,263.76Kz</p>
+            </div>
+            <div class="product-item">
+                <img src="./Assets/img/produto (3).jpg" alt="D5 EVO">
+                <p>MOTOR CENTURION D5 EVO</p>
+                <p class="price">540,580.65Kz</p>
+            </div>
+            <div class="product-item">
+                <img src="./Assets/img/produto (2).png" alt="Controle D10">
+                <p>PLACA DE CONTROLE PARA MOTOR D10</p>
+                <p class="price">Consultar</p>
+            </div>
+            <div class="product-item">
+                <img src="./Assets/img/produto (4).jpeg" alt="Fio Alumínio">
+                <p>FIO DE ALUMÍNIO FLEXÍVEL</p>
+                <p class="price">60,447.36Kz</p>
+            </div>
+            <div class="product-item">
+                <img src="./Assets/img/produto (4).jpeg" alt="Fio Alumínio">
+                <p>FIO DE ALUMÍNIO FLEXÍVEL</p>
+                <p class="price">60,447.36Kz</p>
+            </div>
+            <div class="product-item">
+                <img src="./Assets/img/produto (4).jpeg" alt="Fio Alumínio">
+                <p>FIO DE ALUMÍNIO FLEXÍVEL</p>p+çºº
+                `º_`
+                <p class="price">60,447.36Kz</p>
+            </div>          
+        </section>
+        
+        <div class="partners-section">
+            <h2 class="section-title">Parceria De Sucesso</h2>
+            <p>
+                A Spulgate Angola, coma TVT, Nasslook, Hikivision, Microtik, Tenda, Cisco, Netapp, Ubiquiti, Tp-Link, Yearstar, Yealink, Ultralan, e Fanvil.
+
+Dispoe de acesso directo a linha de suporte tecnico,aceso ao canal de pe as em um stock no valor aproximado de 4.000.000,00 akz. Pelo que toda e qualquer chamada canalizada par via da Spulgate, tern garantia de contrato e servi o, podendo o cliente usufluir de um tratamento profissional e personalizado, par tecnico certificados.
+            </p>
+            <div class="partner-logos">
+                <img src="./Assets/img/Yealink-Logo-1A.jpg" alt="Yealink">
+                <img src="./Assets/img/Ultralan-Logo-Test-1A.jpg" alt="Ultralan">
+                <img src="./Assets/img/Ubiquiti-Logo-1A.jpg" alt="Ubiquiti">
+                <img src="./Assets/img/Hikvision-Logo-1A.jpg" alt="Hikvision">
+                <img src="./Assets/img/Yeastar-Logo-1A.jpg" alt="Yeastar">
+            </div>
+        </div>
+    </main>
+    <a href="https://wa.me/244940370723" class="tellLink">
+      <div class="tellWhatsapp">
+        <img src="./Assets/img/whatsapp.svg" alt="">
+      </div>
+    </a>
+  <footer>
+    <div class="footer-content">
+      <div class="newsletter">
+        <div class="newsWords">
+          <h4> <i>Newsletter</i> </h4>
+          <p>Receba atualizações e ofertas exclusivas.</p>
+        </div>
+        <div class="newsForm">
+          <input type="email" placeholder="Entre com  seu E-mail">
+          <button>Subscrever</button>
+        </div>
+      </div>
+      <div class="footInfo">
+        <div>
+          <h4> <i>Sobre Nós</i> </h4>
+          <p>SPUL GATE ANGOLA LDA atua no ramo de segurança e tecnologia desde 2009.</p>
+        </div>
+        <div>
+          <h4> <i> Serviços</i></h4>
+          <p>Portões, Acessos, Câmeras, Redes, Elétrica.</p>
+        </div>
+        <div>
+          <h4> <i>Contactos</i> </h4>
+          <div class="logoLinksSocials">
+            
+            <a href="#LinkFacebook">
+              <div class="lLS"><img src="./Assets/img/facebook___f0c20b5992e161d727f11539bb229101.svg" alt=""></div>
+            </a>
+
+            <a href="#LinkLinkedin">
+              <div class="lLS"><img src="./Assets/img/linkedin___47a1a38aea63533c6816f8da9c179b1c.svg" alt=""></div>
+            </a>
+
+            <a href="#linkInstagram">
+              <div class="lLS"><img src="./Assets/img/instagram___80ab95ac5e264f07337a9d61d3d81b4f.svg" alt=""></div>
+            </a>
+      
+          </div>
+          <p>+244 930 440 117</p>
+          <p>info@spulgate.co.ao</p>
+        </div>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 2rem;">&copy; Spulgate. Desenvolvido pela <a href="#GingaSoft" style="text-decoration: none; color: #0046ff;"> <i>GingaSoft Inc. </i> </a></p>
+  </footer>
+
+  <button id="backToTop" onclick="scrollToTop();">↑</button>
+
+  <script>
+    const header = document.getElementById('mainHeader'); const backToTop = document.getElementById('backToTop'); let lastScrollTop = 0;
+    window.addEventListener('scroll', () => { const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      if (scrollTop > 200) {
+        backToTop.style.opacity = '1';
+      } else {
+        backToTop.style.opacity = '0';
+      }
+
+      lastScrollTop = scrollTop;
+    });
+
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  </script>
+  <a href="./teste00/">teste00</a>
+
+  <div class="onload">
+    <div class="processAll">
+      <div class="process">
+          <img src="./Assets/img/Spulgate-Logo-PNG.png" height="70px" width="70px">
+      </div>
+      <div class="onprocess">
+        <div class="bakcProcessOn"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
